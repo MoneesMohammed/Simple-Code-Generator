@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace CodeGeneration
+{
+    public class clsCodeGenerator
+    {
+        private clsCodeGenBusinessLayer CodeGenBL;
+        private clsCodeGenDataLayer CodeGenDL;
+
+        /// <param name="ClassName">The ClassName to be Generated.</param>
+        /// <param name="Properties">The Properties of ClassName . example: ID:int,Name:string,Email:string.</param>
+        /// <param name="NameTable">The NameTable to be Generated Querys.</param>
+        public clsCodeGenerator(string ClassName, string Properties, string NameTable) 
+        {
+            CodeGenBL  = new clsCodeGenBusinessLayer(ClassName, Properties, NameTable);
+            CodeGenDL  = new clsCodeGenDataLayer (ClassName, Properties, NameTable);
+        }
+
+        /// <summary>
+        /// Generate Business Layer Code .
+        /// </summary>
+        /// <returns>The Generate Business Layer of the Code.</returns>
+        public string GenerateBLCode() 
+        {
+            return CodeGenBL.GenerateCode();
+        }
+
+        /// <summary>
+        /// Generate Data Layer Code .
+        /// </summary>
+        /// <returns>The Generate Data Layer of the Code.</returns>
+        public string GenerateDLCode() 
+        {
+            return CodeGenDL.GenerateCode();
+        }
+
+        /// <summary>
+        /// Generate DataSettings Class Code .
+        /// </summary>
+        /// <returns>The Generate DataSettings Class of the Code.</returns>
+        public string GenerateDSClassCode() 
+        {
+            return CodeGenDL.GenerateDataSettingsClass();
+        }
+
+    }
+}
