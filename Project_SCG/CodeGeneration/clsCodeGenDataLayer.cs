@@ -139,7 +139,7 @@ namespace CodeGeneration
             {
                 sb.AppendLine("    catch(Exception ex)"); 
                 sb.AppendLine("    {");
-                sb.AppendLine("         isFound = false;");
+                sb.AppendLine("        isFound = false;");
                 sb.AppendLine($"        clsLogger.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
                 sb.AppendLine("    }");
             }
@@ -225,7 +225,7 @@ namespace CodeGeneration
             {
                 sb.AppendLine("    catch(Exception ex)");
                 sb.AppendLine("    {");
-                sb.AppendLine("         ID = -1;");
+                sb.AppendLine("        ID = -1;");
                 sb.AppendLine($"        clsLogger.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
                 sb.AppendLine("    }");
             }
@@ -301,8 +301,8 @@ namespace CodeGeneration
             {
                 sb.AppendLine("    catch(Exception ex)");
                 sb.AppendLine("    {");
-                sb.AppendLine("         return false;");
                 sb.AppendLine($"        clsLogger.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("        return false;");
                 sb.AppendLine("    }");
             }
             else
@@ -345,8 +345,8 @@ namespace CodeGeneration
             {
                 sb.AppendLine("    catch(Exception ex)");
                 sb.AppendLine("    {");
-                sb.AppendLine("         return false;");
                 sb.AppendLine($"        clsLogger.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("        return false;");
                 sb.AppendLine("    }");
             }
             else
