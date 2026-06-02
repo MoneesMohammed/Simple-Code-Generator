@@ -11,13 +11,28 @@ namespace CodeGeneration
         private clsCodeGenBusinessLayer CodeGenBL;
         private clsCodeGenDataLayer CodeGenDL;
 
+        private bool _GenerateEventLogCode;
+
+        public bool GenerateEventLogCode // Add WriteOnEventLog Method in code
+        {
+            get { return _GenerateEventLogCode; }
+
+            set
+            {
+                _GenerateEventLogCode = value;
+                CodeGenDL.GenerateEventLogCode = value;
+            }
+        }
+
         /// <param name="ClassName">The ClassName to be Generated.</param>
         /// <param name="Properties">The Properties of ClassName . example: ID:int,Name:string,Email:string.</param>
         /// <param name="NameTable">The NameTable to be Generated Querys.</param>
-        public clsCodeGenerator(string ClassName, string Properties, string NameTable) 
+        /// <param name="SourceName">SourceName represents the identifier of the software.</param>
+        public clsCodeGenerator(string ClassName, string Properties, string NameTable , string SourceName) 
         {
             CodeGenBL  = new clsCodeGenBusinessLayer(ClassName, Properties, NameTable);
-            CodeGenDL  = new clsCodeGenDataLayer (ClassName, Properties, NameTable);
+            CodeGenDL  = new clsCodeGenDataLayer (ClassName, Properties, NameTable , SourceName);
+
         }
 
         /// <summary>
@@ -47,5 +62,11 @@ namespace CodeGeneration
             return CodeGenDL.GenerateDataSettingsClass();
         }
 
+
+        public void SetAddWriteOnEventLog()
+        { 
+        
+        
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -11,22 +12,45 @@ namespace CodeGeneration
         public string ClassName { get; set; }
         public string Properties { get; set; } //(example: ID:int,Name:string,Email:string)
         public string TableName { get; set; }
+
+        public bool GenerateEventLogCode { get; set; } // Add WriteOnEventLog in code
+
+        private string _sourceName; 
+        
+        public string SourceName
+        {
+            get
+            {
+                return _sourceName;
+            }
+            set
+            {
+                _sourceName = value;
+
+                //GenerateEventLogCode = !string.IsNullOrWhiteSpace(value);
+            }
+        }
+
+
         private StringBuilder sb { get; }
 
         private string _PropID;
         private string _nameMethod;
         private string[] props;
 
-        public clsCodeGenDataLayer(string ClassName, string Properties , string NameTable)
+        public clsCodeGenDataLayer(string ClassName, string Properties , string NameTable , string SourceName)
         {
             this.ClassName = ClassName + "Data";
             this.Properties = Properties;
             this.TableName = NameTable;
+            this.SourceName = SourceName;
+
             sb = new StringBuilder();
             props = Properties.Split(',');
 
            _PropID = props[0].Split(':')[0];
            _nameMethod = ClassName.Replace("cls", "").Replace("Data", "");
+
         }
 
         private StringBuilder CreateDataSettingsClass()//clsDataSettings
@@ -41,7 +65,7 @@ namespace CodeGeneration
             return sb;
         }
 
-        
+        //WriteOnEventLog
 
 
         private void CreateClass()//cls[Name]sData
@@ -108,10 +132,25 @@ namespace CodeGeneration
             sb.AppendLine("");
             sb.AppendLine("      reader.Close();");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception e)");
-            sb.AppendLine("    {");
-            sb.AppendLine("        isFound = false;");
-            sb.AppendLine("    }");
+
+            //"clsUtil.WriteOnEventLog("DVLD", ex.Message, EventLogEntryType.Error);"
+
+            if (GenerateEventLogCode)
+            {
+                sb.AppendLine("    catch(Exception ex)"); 
+                sb.AppendLine("    {");
+                sb.AppendLine("         isFound = false;");
+                sb.AppendLine($"        clsUtil.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)"); 
+                sb.AppendLine("    {");
+                sb.AppendLine("        isFound = false;");
+                sb.AppendLine("    }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    {");
             sb.AppendLine("         connection.Close();");
@@ -181,8 +220,21 @@ namespace CodeGeneration
             sb.AppendLine("        }");
             sb.AppendLine("");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception e)");
-            sb.AppendLine("    { ID = -1; }");
+
+            if (GenerateEventLogCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("         ID = -1;");
+                sb.AppendLine($"        clsUtil.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { ID = -1; }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -244,8 +296,21 @@ namespace CodeGeneration
             sb.AppendLine("        connection.Open();");
             sb.AppendLine("        RowAffected = command.ExecuteNonQuery();");     
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception e)");
-            sb.AppendLine("    { return false; }");
+
+            if (GenerateEventLogCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("         return false;");
+                sb.AppendLine($"        clsUtil.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { return false; }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -275,8 +340,21 @@ namespace CodeGeneration
             sb.AppendLine("        connection.Open();");
             sb.AppendLine("        RowAffected = command.ExecuteNonQuery();");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception e)");
-            sb.AppendLine("    { return false; }");
+
+            if (GenerateEventLogCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("         return false;");
+                sb.AppendLine($"        clsUtil.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { return false; }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -312,8 +390,20 @@ namespace CodeGeneration
             sb.AppendLine("");
             sb.AppendLine("        reader.Close();");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception e)");
-            sb.AppendLine("    {  }");
+
+            if (GenerateEventLogCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine($"        clsUtil.WriteOnEventLog(\"{SourceName}\", ex.Message, EventLogEntryType.Error);   ");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    {  }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");

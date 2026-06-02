@@ -16,9 +16,10 @@ namespace Simple_Code_Generator
             public string ClassName;
             public string Properties;
             public string TableName;
+            public string SourceName;
         }
 
-        clsGeneratorInput Input;
+        clsGeneratorInput Input = new clsGeneratorInput();
         clsCodeGenerator codeGen; //= new clsCodeGenerator(ClassName, Properties, TableName);
 
         public frmMain()
@@ -31,10 +32,13 @@ namespace Simple_Code_Generator
             Input.ClassName = txtClassName.Text;
             Input.Properties = txtProperties.Text;
             Input.TableName = txtTableName.Text;
+            Input.SourceName = txtSourceName.Text;
 
-            codeGen = new clsCodeGenerator (Input.ClassName, Input.Properties, Input.TableName);
+            codeGen = new clsCodeGenerator (Input.ClassName, Input.Properties, Input.TableName, Input.SourceName);
 
-            if (rbutBusinessLayer.Checked)
+            codeGen.GenerateEventLogCode = chbAddWriteOnEventLog.Checked;
+
+            if (rbtnBusinessLayer.Checked)
                 txtCodeGenerated.Text = codeGen.GenerateBLCode();
             else
                 txtCodeGenerated.Text = codeGen.GenerateDLCode();
@@ -53,23 +57,23 @@ namespace Simple_Code_Generator
         {
             Input = LoadGeneratorInput("Input.Json");
 
-            txtClassName.Text  = Input.ClassName;
+            txtClassName.Text = Input.ClassName;
             txtProperties.Text = Input.Properties;
-            txtTableName.Text  = Input.TableName;
-
+            txtTableName.Text = Input.TableName;
+            txtSourceName.Text = Input.SourceName;
         }
 
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Input.ClassName = txtClassName.Text;
+            Input.ClassName  = txtClassName.Text;
             Input.Properties = txtProperties.Text;
-            Input.TableName = txtTableName.Text;
+            Input.TableName  = txtTableName.Text;
+            Input.SourceName = txtSourceName.Text;
 
             string path = "Input.Json";
 
             SaveGeneratorInput(path, Input);
-
         }
 
 
@@ -149,6 +153,41 @@ namespace Simple_Code_Generator
             else
             {
                 errorProvider1.SetError(txtTableName, null);
+            }
+        }
+
+        private void rbtnDataLayer_CheckedChanged(object sender, EventArgs e)
+        {
+             chbAddWriteOnEventLog.Visible = rbtnDataLayer.Checked;
+
+             chbAddWriteOnEventLog.Checked = false;
+            
+        }
+
+        private void chbAddWriteOnEventLog_CheckedChanged(object sender, EventArgs e)
+        {
+            lblExSourceName.Visible = chbAddWriteOnEventLog.Checked;
+            lblSourceName.Visible = lblExSourceName.Visible;
+            txtSourceName.Visible = lblSourceName.Visible;
+
+            if(chbAddWriteOnEventLog.Checked)
+                txtSourceName.Focus();
+        }
+
+        private void txtSourceName_Validating(object sender, CancelEventArgs e)
+        {
+            if (!txtSourceName.Visible)
+                return;
+
+            if (string.IsNullOrEmpty(txtSourceName.Text.Trim()))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtSourceName, "Source Name should have a Value!");
+                return;
+            }
+            else
+            {
+                errorProvider1.SetError(txtSourceName, null);
             }
         }
     }

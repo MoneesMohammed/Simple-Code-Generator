@@ -40,10 +40,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.butCopy = new System.Windows.Forms.Button();
             this.butGenerate = new System.Windows.Forms.Button();
-            this.rbutBusinessLayer = new System.Windows.Forms.RadioButton();
-            this.rbutDataLayer = new System.Windows.Forms.RadioButton();
+            this.rbtnBusinessLayer = new System.Windows.Forms.RadioButton();
+            this.rbtnDataLayer = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chbAddWriteOnEventLog = new System.Windows.Forms.CheckBox();
+            this.txtSourceName = new System.Windows.Forms.TextBox();
+            this.lblSourceName = new System.Windows.Forms.Label();
+            this.lblExSourceName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,29 +161,30 @@
             this.butGenerate.UseVisualStyleBackColor = true;
             this.butGenerate.Click += new System.EventHandler(this.butGenerated_Click);
             // 
-            // rbutBusinessLayer
+            // rbtnBusinessLayer
             // 
-            this.rbutBusinessLayer.AutoSize = true;
-            this.rbutBusinessLayer.Checked = true;
-            this.rbutBusinessLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbutBusinessLayer.Location = new System.Drawing.Point(907, 118);
-            this.rbutBusinessLayer.Name = "rbutBusinessLayer";
-            this.rbutBusinessLayer.Size = new System.Drawing.Size(135, 24);
-            this.rbutBusinessLayer.TabIndex = 10;
-            this.rbutBusinessLayer.TabStop = true;
-            this.rbutBusinessLayer.Text = "Business Layer";
-            this.rbutBusinessLayer.UseVisualStyleBackColor = true;
+            this.rbtnBusinessLayer.AutoSize = true;
+            this.rbtnBusinessLayer.Checked = true;
+            this.rbtnBusinessLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnBusinessLayer.Location = new System.Drawing.Point(907, 118);
+            this.rbtnBusinessLayer.Name = "rbtnBusinessLayer";
+            this.rbtnBusinessLayer.Size = new System.Drawing.Size(135, 24);
+            this.rbtnBusinessLayer.TabIndex = 10;
+            this.rbtnBusinessLayer.TabStop = true;
+            this.rbtnBusinessLayer.Text = "Business Layer";
+            this.rbtnBusinessLayer.UseVisualStyleBackColor = true;
             // 
-            // rbutDataLayer
+            // rbtnDataLayer
             // 
-            this.rbutDataLayer.AutoSize = true;
-            this.rbutDataLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbutDataLayer.Location = new System.Drawing.Point(1066, 118);
-            this.rbutDataLayer.Name = "rbutDataLayer";
-            this.rbutDataLayer.Size = new System.Drawing.Size(105, 24);
-            this.rbutDataLayer.TabIndex = 11;
-            this.rbutDataLayer.Text = "Data Layer";
-            this.rbutDataLayer.UseVisualStyleBackColor = true;
+            this.rbtnDataLayer.AutoSize = true;
+            this.rbtnDataLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnDataLayer.Location = new System.Drawing.Point(1066, 118);
+            this.rbtnDataLayer.Name = "rbtnDataLayer";
+            this.rbtnDataLayer.Size = new System.Drawing.Size(105, 24);
+            this.rbtnDataLayer.TabIndex = 11;
+            this.rbtnDataLayer.Text = "Data Layer";
+            this.rbtnDataLayer.UseVisualStyleBackColor = true;
+            this.rbtnDataLayer.CheckedChanged += new System.EventHandler(this.rbtnDataLayer_CheckedChanged);
             // 
             // label5
             // 
@@ -195,14 +200,64 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // chbAddWriteOnEventLog
+            // 
+            this.chbAddWriteOnEventLog.AutoSize = true;
+            this.chbAddWriteOnEventLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbAddWriteOnEventLog.Location = new System.Drawing.Point(972, 94);
+            this.chbAddWriteOnEventLog.Name = "chbAddWriteOnEventLog";
+            this.chbAddWriteOnEventLog.Size = new System.Drawing.Size(173, 22);
+            this.chbAddWriteOnEventLog.TabIndex = 13;
+            this.chbAddWriteOnEventLog.Text = "Add WriteOnEventLog";
+            this.chbAddWriteOnEventLog.UseVisualStyleBackColor = true;
+            this.chbAddWriteOnEventLog.Visible = false;
+            this.chbAddWriteOnEventLog.CheckedChanged += new System.EventHandler(this.chbAddWriteOnEventLog_CheckedChanged);
+            // 
+            // txtSourceName
+            // 
+            this.txtSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSourceName.Location = new System.Drawing.Point(591, 105);
+            this.txtSourceName.Name = "txtSourceName";
+            this.txtSourceName.Size = new System.Drawing.Size(271, 26);
+            this.txtSourceName.TabIndex = 14;
+            this.txtSourceName.Visible = false;
+            this.txtSourceName.Validating += new System.ComponentModel.CancelEventHandler(this.txtSourceName_Validating);
+            // 
+            // lblSourceName
+            // 
+            this.lblSourceName.AutoSize = true;
+            this.lblSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSourceName.Location = new System.Drawing.Point(463, 105);
+            this.lblSourceName.Name = "lblSourceName";
+            this.lblSourceName.Size = new System.Drawing.Size(122, 24);
+            this.lblSourceName.TabIndex = 15;
+            this.lblSourceName.Text = "SourceName";
+            this.lblSourceName.Visible = false;
+            // 
+            // lblExSourceName
+            // 
+            this.lblExSourceName.AutoSize = true;
+            this.lblExSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExSourceName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblExSourceName.Location = new System.Drawing.Point(587, 134);
+            this.lblExSourceName.Name = "lblExSourceName";
+            this.lblExSourceName.Size = new System.Drawing.Size(147, 20);
+            this.lblExSourceName.TabIndex = 16;
+            this.lblExSourceName.Text = "example: \"DVLD\"";
+            this.lblExSourceName.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 1028);
+            this.Controls.Add(this.lblExSourceName);
+            this.Controls.Add(this.lblSourceName);
+            this.Controls.Add(this.txtSourceName);
+            this.Controls.Add(this.chbAddWriteOnEventLog);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.rbutDataLayer);
-            this.Controls.Add(this.rbutBusinessLayer);
+            this.Controls.Add(this.rbtnDataLayer);
+            this.Controls.Add(this.rbtnBusinessLayer);
             this.Controls.Add(this.butCopy);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -238,10 +293,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button butCopy;
-        private System.Windows.Forms.RadioButton rbutBusinessLayer;
-        private System.Windows.Forms.RadioButton rbutDataLayer;
+        private System.Windows.Forms.RadioButton rbtnBusinessLayer;
+        private System.Windows.Forms.RadioButton rbtnDataLayer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.CheckBox chbAddWriteOnEventLog;
+        private System.Windows.Forms.Label lblSourceName;
+        private System.Windows.Forms.TextBox txtSourceName;
+        private System.Windows.Forms.Label lblExSourceName;
     }
 }
 
