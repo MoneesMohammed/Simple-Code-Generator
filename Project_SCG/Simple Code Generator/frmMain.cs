@@ -29,6 +29,14 @@ namespace Simple_Code_Generator
 
         private void butGenerated_Click(object sender, EventArgs e)
         {
+            if (!this.ValidateChildren())
+            {
+                //Here we dont continue becuase the form is not valid
+                MessageBox.Show("Some fileds are not valide!, put the mouse over the red icon(s) to see the erro", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             Input.ClassName = txtClassName.Text;
             Input.Properties = txtProperties.Text;
             Input.TableName = txtTableName.Text;
