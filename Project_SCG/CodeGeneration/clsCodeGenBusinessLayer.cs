@@ -17,6 +17,19 @@ namespace CodeGeneration
 
         private string[] props ;
 
+        Dictionary<string, string> defaults = new Dictionary<string, string>
+        {
+                { "int", "-1" },
+                { "float", "-1" },
+                { "byte", "0" },
+                { "double", "-1" },
+                { "decimal", "-1" },
+                { "string", "\"\"" },
+                { "bool", "true" },
+                { "DateTime", "DateTime.Now" }
+
+        };
+
         public clsCodeGenBusinessLayer(string ClassName, string Properties, string tableName)
         {
             this.ClassName = ClassName;
@@ -60,10 +73,10 @@ namespace CodeGeneration
                 string propName = parts[0];
                 string propType = parts[1];
 
-                string DefaultValue = propType != "string" && propType != "bool" && propType != "DateTime" ? "-1"
-                     : propType == "string" ? "\"\"" : propType == "bool" ? "true" : propType == "DateTime" ? "DateTime.Now" : "";
+                //string DefaultValue = propType != "string" && propType != "bool" && propType != "DateTime" ? "-1"
+                //     : propType == "string" ? "\"\"" : propType == "bool" ? "true" : propType == "DateTime" ? "DateTime.Now" : "";
 
-                
+                string DefaultValue = defaults[propType];
 
                 sb.AppendLine($"    this.{propName} = {DefaultValue} ;");
             }
@@ -113,19 +126,6 @@ namespace CodeGeneration
             sb.AppendLine($"\n  public static {ClassName} Find(int {PropID})");
             sb.AppendLine("  {");
 
-            Dictionary<string, string> defaults = new Dictionary<string, string>
-            {
-                { "int", "-1" },
-                { "float", "-1" },
-                { "byte", "-1" },
-                { "double", "-1" },
-                { "decimal", "-1" },
-                { "string", "\"\"" },
-                { "bool", "true" },
-                { "DateTime", "DateTime.Now" }
-
-            };
-           
             Dictionary<string, List<string>> grouped = new Dictionary<string, List<string>>();
 
             // Ignore the first parameter
