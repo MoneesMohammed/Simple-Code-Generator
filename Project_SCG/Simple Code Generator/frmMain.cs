@@ -46,10 +46,29 @@ namespace Simple_Code_Generator
 
             codeGen.GenerateEventLogCode = chbAddWriteOnEventLog.Checked;
 
-            if (rbtnBusinessLayer.Checked)
-                txtCodeGenerated.Text = codeGen.GenerateBLCode();
+            if (!chbAPIs.Checked)
+            {
+                if (rbtnBusinessLayer.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateBLCode();
+                else if (rbtnDataLayer.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateDLCode();
+
+            }
             else
-                txtCodeGenerated.Text = codeGen.GenerateDLCode();
+            {
+                if (rbtnDataLayer.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateAPIDLCode();
+                else if (rbtnSQLStoredProcedures.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateSQLSPCode();
+                else if (rbtnBusinessLayer.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateAPIBLCode();
+                else
+                    txtCodeGenerated.Text = codeGen.GenerateAPIsCtrlrCode();
+
+            }
+           
+            
+
 
             MessageBox.Show("Generated!","Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -166,7 +185,12 @@ namespace Simple_Code_Generator
 
         private void rbtnDataLayer_CheckedChanged(object sender, EventArgs e)
         {
-             chbAddWriteOnEventLog.Visible = rbtnDataLayer.Checked;
+            if (chbAPIs.Checked)
+            {
+                return;
+            }
+
+            chbAddWriteOnEventLog.Visible = rbtnDataLayer.Checked;
 
              chbAddWriteOnEventLog.Checked = false;
             
@@ -198,5 +222,19 @@ namespace Simple_Code_Generator
                 errorProvider1.SetError(txtSourceName, null);
             }
         }
+
+        private void chbAPIs_CheckedChanged(object sender, EventArgs e)
+        {
+            rbtnAPIsController.Visible = chbAPIs.Checked;
+            rbtnSQLStoredProcedures.Visible = rbtnAPIsController.Visible;
+
+            rbtnBusinessLayer.Text = chbAPIs.Checked ? "API Business Layer": "Business Layer";
+            rbtnDataLayer.Text = chbAPIs.Checked ? "API Data Layer" : "Data Layer";
+
+            chbAddWriteOnEventLog.Visible = !chbAPIs.Checked && !rbtnBusinessLayer.Checked;
+            chbAddWriteOnEventLog.Checked = false;
+        }
+
+
     }
 }

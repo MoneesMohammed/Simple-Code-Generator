@@ -48,6 +48,9 @@
             this.txtSourceName = new System.Windows.Forms.TextBox();
             this.lblSourceName = new System.Windows.Forms.Label();
             this.lblExSourceName = new System.Windows.Forms.Label();
+            this.chbAPIs = new System.Windows.Forms.CheckBox();
+            this.rbtnSQLStoredProcedures = new System.Windows.Forms.RadioButton();
+            this.rbtnAPIsController = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,11 +85,11 @@
             // 
             this.txtCodeGenerated.AcceptsTab = true;
             this.txtCodeGenerated.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 164);
+            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 207);
             this.txtCodeGenerated.Multiline = true;
             this.txtCodeGenerated.Name = "txtCodeGenerated";
             this.txtCodeGenerated.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 805);
+            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 816);
             this.txtCodeGenerated.TabIndex = 4;
             this.txtCodeGenerated.WordWrap = false;
             // 
@@ -137,7 +140,7 @@
             this.butCopy.ForeColor = System.Drawing.SystemColors.ControlText;
             this.butCopy.Image = global::Simple_Code_Generator.Properties.Resources.copy_1;
             this.butCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.butCopy.Location = new System.Drawing.Point(1055, 975);
+            this.butCopy.Location = new System.Drawing.Point(1045, 1029);
             this.butCopy.Name = "butCopy";
             this.butCopy.Size = new System.Drawing.Size(126, 44);
             this.butCopy.TabIndex = 9;
@@ -166,11 +169,10 @@
             this.rbtnBusinessLayer.AutoSize = true;
             this.rbtnBusinessLayer.Checked = true;
             this.rbtnBusinessLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnBusinessLayer.Location = new System.Drawing.Point(907, 118);
+            this.rbtnBusinessLayer.Location = new System.Drawing.Point(852, 118);
             this.rbtnBusinessLayer.Name = "rbtnBusinessLayer";
             this.rbtnBusinessLayer.Size = new System.Drawing.Size(135, 24);
             this.rbtnBusinessLayer.TabIndex = 10;
-            this.rbtnBusinessLayer.TabStop = true;
             this.rbtnBusinessLayer.Text = "Business Layer";
             this.rbtnBusinessLayer.UseVisualStyleBackColor = true;
             // 
@@ -178,7 +180,7 @@
             // 
             this.rbtnDataLayer.AutoSize = true;
             this.rbtnDataLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnDataLayer.Location = new System.Drawing.Point(1066, 118);
+            this.rbtnDataLayer.Location = new System.Drawing.Point(1040, 118);
             this.rbtnDataLayer.Name = "rbtnDataLayer";
             this.rbtnDataLayer.Size = new System.Drawing.Size(105, 24);
             this.rbtnDataLayer.TabIndex = 11;
@@ -190,7 +192,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 1003);
+            this.label5.Location = new System.Drawing.Point(5, 1057);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(104, 16);
             this.label5.TabIndex = 12;
@@ -216,7 +218,7 @@
             // txtSourceName
             // 
             this.txtSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSourceName.Location = new System.Drawing.Point(591, 105);
+            this.txtSourceName.Location = new System.Drawing.Point(151, 132);
             this.txtSourceName.Name = "txtSourceName";
             this.txtSourceName.Size = new System.Drawing.Size(271, 26);
             this.txtSourceName.TabIndex = 14;
@@ -227,7 +229,7 @@
             // 
             this.lblSourceName.AutoSize = true;
             this.lblSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSourceName.Location = new System.Drawing.Point(463, 105);
+            this.lblSourceName.Location = new System.Drawing.Point(23, 132);
             this.lblSourceName.Name = "lblSourceName";
             this.lblSourceName.Size = new System.Drawing.Size(122, 24);
             this.lblSourceName.TabIndex = 15;
@@ -239,18 +241,57 @@
             this.lblExSourceName.AutoSize = true;
             this.lblExSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExSourceName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblExSourceName.Location = new System.Drawing.Point(587, 134);
+            this.lblExSourceName.Location = new System.Drawing.Point(147, 161);
             this.lblExSourceName.Name = "lblExSourceName";
             this.lblExSourceName.Size = new System.Drawing.Size(147, 20);
             this.lblExSourceName.TabIndex = 16;
             this.lblExSourceName.Text = "example: \"DVLD\"";
             this.lblExSourceName.Visible = false;
             // 
+            // chbAPIs
+            // 
+            this.chbAPIs.AutoSize = true;
+            this.chbAPIs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbAPIs.Location = new System.Drawing.Point(889, 17);
+            this.chbAPIs.Name = "chbAPIs";
+            this.chbAPIs.Size = new System.Drawing.Size(57, 22);
+            this.chbAPIs.TabIndex = 17;
+            this.chbAPIs.Text = "APIs";
+            this.chbAPIs.UseVisualStyleBackColor = true;
+            this.chbAPIs.CheckedChanged += new System.EventHandler(this.chbAPIs_CheckedChanged);
+            // 
+            // rbtnSQLStoredProcedures
+            // 
+            this.rbtnSQLStoredProcedures.AutoSize = true;
+            this.rbtnSQLStoredProcedures.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnSQLStoredProcedures.Location = new System.Drawing.Point(473, 118);
+            this.rbtnSQLStoredProcedures.Name = "rbtnSQLStoredProcedures";
+            this.rbtnSQLStoredProcedures.Size = new System.Drawing.Size(196, 24);
+            this.rbtnSQLStoredProcedures.TabIndex = 19;
+            this.rbtnSQLStoredProcedures.Text = "SQL Stored Procedures";
+            this.rbtnSQLStoredProcedures.UseVisualStyleBackColor = true;
+            this.rbtnSQLStoredProcedures.Visible = false;
+            // 
+            // rbtnAPIsController
+            // 
+            this.rbtnAPIsController.AutoSize = true;
+            this.rbtnAPIsController.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnAPIsController.Location = new System.Drawing.Point(686, 118);
+            this.rbtnAPIsController.Name = "rbtnAPIsController";
+            this.rbtnAPIsController.Size = new System.Drawing.Size(133, 24);
+            this.rbtnAPIsController.TabIndex = 18;
+            this.rbtnAPIsController.Text = "APIs Controller";
+            this.rbtnAPIsController.UseVisualStyleBackColor = true;
+            this.rbtnAPIsController.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1193, 1028);
+            this.ClientSize = new System.Drawing.Size(1193, 1085);
+            this.Controls.Add(this.rbtnSQLStoredProcedures);
+            this.Controls.Add(this.rbtnAPIsController);
+            this.Controls.Add(this.chbAPIs);
             this.Controls.Add(this.lblExSourceName);
             this.Controls.Add(this.lblSourceName);
             this.Controls.Add(this.txtSourceName);
@@ -301,6 +342,9 @@
         private System.Windows.Forms.Label lblSourceName;
         private System.Windows.Forms.TextBox txtSourceName;
         private System.Windows.Forms.Label lblExSourceName;
+        private System.Windows.Forms.CheckBox chbAPIs;
+        private System.Windows.Forms.RadioButton rbtnSQLStoredProcedures;
+        private System.Windows.Forms.RadioButton rbtnAPIsController;
     }
 }
 

@@ -10,7 +10,10 @@ namespace CodeGeneration
     {
         private clsCodeGenBusinessLayer CodeGenBL;
         private clsCodeGenDataLayer CodeGenDL;
-
+        private clsCodeGenAPIDataLayer CodeGenAPIDL;
+        private clsCodeGenSQLStoredProcedures CodeGenSQLSP;
+        private clsCodeGenAPIBusinessLayer CodeGenAPIBL;
+        private clsCodeGenAPIsController CodeGenAPIsCtrlr;
         private bool _GenerateEventLogCode;
 
         public bool GenerateEventLogCode // Add WriteOnEventLog Method in code
@@ -33,6 +36,13 @@ namespace CodeGeneration
             CodeGenBL  = new clsCodeGenBusinessLayer(ClassName, Properties, NameTable);
             CodeGenDL  = new clsCodeGenDataLayer (ClassName, Properties, NameTable , SourceName);
 
+            CodeGenAPIDL = new clsCodeGenAPIDataLayer(ClassName, Properties, NameTable);
+
+            CodeGenSQLSP = new clsCodeGenSQLStoredProcedures (ClassName, Properties, NameTable);
+
+            CodeGenAPIBL = new clsCodeGenAPIBusinessLayer (ClassName, Properties, NameTable);
+
+            CodeGenAPIsCtrlr = new clsCodeGenAPIsController(ClassName, Properties, NameTable);
         }
 
         /// <summary>
@@ -63,10 +73,25 @@ namespace CodeGeneration
         }
 
 
-        public void SetAddWriteOnEventLog()
-        { 
-        
-        
+        public string GenerateAPIDLCode()
+        {
+            return CodeGenAPIDL.GenerateCode();
         }
+
+        public string GenerateSQLSPCode()
+        {
+            return CodeGenSQLSP.GenerateCode();
+        }
+
+        public string GenerateAPIBLCode()
+        {
+            return CodeGenAPIBL.GenerateCode();
+        }
+
+        public string GenerateAPIsCtrlrCode()
+        {
+            return CodeGenAPIsCtrlr.GenerateCode();
+        }
+
     }
 }

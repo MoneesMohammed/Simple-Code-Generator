@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGenerationAPIs\clsCodeGenAPIBusinessLayer.cs" />
+    <Compile Include="CodeGenerationAPIs\clsCodeGenAPIDataLayer.cs" />
+    <Compile Include="CodeGenerationAPIs\clsCodeGenAPIsController.cs" />
     <Compile Include="clsCodeGenBusinessLayer.cs" />
     <Compile Include="clsCodeGenDataLayer.cs" />
     <Compile Include="clsCodeGenerator.cs" />
+    <Compile Include="CodeGenerationAPIs\clsCodeGenSQLStoredProcedures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
