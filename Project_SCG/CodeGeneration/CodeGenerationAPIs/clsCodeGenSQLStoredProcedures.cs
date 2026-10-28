@@ -26,7 +26,7 @@ namespace CodeGeneration
           { "byte", "TINYINT" },
           { "double", "FLOAT" }, 
           { "decimal", "DECIMAL(18, 2)" }, 
-          { "string", "NVARCHAR(MAX)" },
+          { "string", "NVARCHAR(250)" },
           { "bool", "BIT" },
           { "DateTime", "DATETIME2" } 
 

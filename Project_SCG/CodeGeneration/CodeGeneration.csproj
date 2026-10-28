@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CodeGenerationAPIs\clsCodeGenAPIBusinessLayer.cs" />
     <Compile Include="CodeGenerationAPIs\clsCodeGenAPIDataLayer.cs" />
+    <Compile Include="CodeGenerationAPIs\clsCodeGenAPIDTO.cs" />
     <Compile Include="CodeGenerationAPIs\clsCodeGenAPIsController.cs" />
     <Compile Include="clsCodeGenBusinessLayer.cs" />
     <Compile Include="clsCodeGenDataLayer.cs" />

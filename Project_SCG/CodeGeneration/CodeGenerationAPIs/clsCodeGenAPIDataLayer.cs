@@ -102,7 +102,7 @@ namespace CodeGeneration
 
         private void CreateClass()//cls[Name]sData
         {
-            sb.AppendLine("");
+            //sb.AppendLine("");
             sb.AppendLine($"public class {ClassName}");
             sb.AppendLine("{");
 
@@ -386,7 +386,7 @@ namespace CodeGeneration
 
         public string GenerateCode()
         {
-            CreateClassDTO();
+            //CreateClassDTO();
             CreateClass();
             CreateGetInfoByIDMethod();
             CreateAddNewMethod();

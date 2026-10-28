@@ -51,6 +51,7 @@
             this.chbAPIs = new System.Windows.Forms.CheckBox();
             this.rbtnSQLStoredProcedures = new System.Windows.Forms.RadioButton();
             this.rbtnAPIsController = new System.Windows.Forms.RadioButton();
+            this.rbtnDTO = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +66,15 @@
             // 
             // txtProperties
             // 
+            this.txtProperties.AcceptsTab = true;
             this.txtProperties.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProperties.Location = new System.Drawing.Point(151, 62);
+            this.txtProperties.Multiline = true;
             this.txtProperties.Name = "txtProperties";
-            this.txtProperties.Size = new System.Drawing.Size(711, 26);
+            this.txtProperties.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtProperties.Size = new System.Drawing.Size(711, 51);
             this.txtProperties.TabIndex = 1;
+            this.txtProperties.WordWrap = false;
             this.txtProperties.Validating += new System.ComponentModel.CancelEventHandler(this.txtProperties_Validating);
             // 
             // txtTableName
@@ -85,11 +90,11 @@
             // 
             this.txtCodeGenerated.AcceptsTab = true;
             this.txtCodeGenerated.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 207);
+            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 218);
             this.txtCodeGenerated.Multiline = true;
             this.txtCodeGenerated.Name = "txtCodeGenerated";
             this.txtCodeGenerated.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 816);
+            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 815);
             this.txtCodeGenerated.TabIndex = 4;
             this.txtCodeGenerated.WordWrap = false;
             // 
@@ -128,7 +133,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(24, 91);
+            this.label4.Location = new System.Drawing.Point(23, 122);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(379, 20);
             this.label4.TabIndex = 8;
@@ -136,11 +141,11 @@
             // 
             // butCopy
             // 
-            this.butCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butCopy.ForeColor = System.Drawing.SystemColors.ControlText;
             this.butCopy.Image = global::Simple_Code_Generator.Properties.Resources.copy_1;
             this.butCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.butCopy.Location = new System.Drawing.Point(1045, 1029);
+            this.butCopy.Location = new System.Drawing.Point(1042, 1039);
             this.butCopy.Name = "butCopy";
             this.butCopy.Size = new System.Drawing.Size(126, 44);
             this.butCopy.TabIndex = 9;
@@ -169,10 +174,11 @@
             this.rbtnBusinessLayer.AutoSize = true;
             this.rbtnBusinessLayer.Checked = true;
             this.rbtnBusinessLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnBusinessLayer.Location = new System.Drawing.Point(852, 118);
+            this.rbtnBusinessLayer.Location = new System.Drawing.Point(857, 162);
             this.rbtnBusinessLayer.Name = "rbtnBusinessLayer";
             this.rbtnBusinessLayer.Size = new System.Drawing.Size(135, 24);
             this.rbtnBusinessLayer.TabIndex = 10;
+            this.rbtnBusinessLayer.TabStop = true;
             this.rbtnBusinessLayer.Text = "Business Layer";
             this.rbtnBusinessLayer.UseVisualStyleBackColor = true;
             // 
@@ -180,7 +186,7 @@
             // 
             this.rbtnDataLayer.AutoSize = true;
             this.rbtnDataLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnDataLayer.Location = new System.Drawing.Point(1040, 118);
+            this.rbtnDataLayer.Location = new System.Drawing.Point(1029, 162);
             this.rbtnDataLayer.Name = "rbtnDataLayer";
             this.rbtnDataLayer.Size = new System.Drawing.Size(105, 24);
             this.rbtnDataLayer.TabIndex = 11;
@@ -191,10 +197,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 1057);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 1060);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 16);
+            this.label5.Size = new System.Drawing.Size(144, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "copyright © 2026";
             // 
@@ -206,7 +212,7 @@
             // 
             this.chbAddWriteOnEventLog.AutoSize = true;
             this.chbAddWriteOnEventLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbAddWriteOnEventLog.Location = new System.Drawing.Point(972, 94);
+            this.chbAddWriteOnEventLog.Location = new System.Drawing.Point(976, 129);
             this.chbAddWriteOnEventLog.Name = "chbAddWriteOnEventLog";
             this.chbAddWriteOnEventLog.Size = new System.Drawing.Size(173, 22);
             this.chbAddWriteOnEventLog.TabIndex = 13;
@@ -218,9 +224,9 @@
             // txtSourceName
             // 
             this.txtSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSourceName.Location = new System.Drawing.Point(151, 132);
+            this.txtSourceName.Location = new System.Drawing.Point(149, 159);
             this.txtSourceName.Name = "txtSourceName";
-            this.txtSourceName.Size = new System.Drawing.Size(271, 26);
+            this.txtSourceName.Size = new System.Drawing.Size(143, 26);
             this.txtSourceName.TabIndex = 14;
             this.txtSourceName.Visible = false;
             this.txtSourceName.Validating += new System.ComponentModel.CancelEventHandler(this.txtSourceName_Validating);
@@ -228,10 +234,10 @@
             // lblSourceName
             // 
             this.lblSourceName.AutoSize = true;
-            this.lblSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSourceName.Location = new System.Drawing.Point(23, 132);
+            this.lblSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSourceName.Location = new System.Drawing.Point(25, 162);
             this.lblSourceName.Name = "lblSourceName";
-            this.lblSourceName.Size = new System.Drawing.Size(122, 24);
+            this.lblSourceName.Size = new System.Drawing.Size(102, 20);
             this.lblSourceName.TabIndex = 15;
             this.lblSourceName.Text = "SourceName";
             this.lblSourceName.Visible = false;
@@ -241,7 +247,7 @@
             this.lblExSourceName.AutoSize = true;
             this.lblExSourceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExSourceName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblExSourceName.Location = new System.Drawing.Point(147, 161);
+            this.lblExSourceName.Location = new System.Drawing.Point(145, 188);
             this.lblExSourceName.Name = "lblExSourceName";
             this.lblExSourceName.Size = new System.Drawing.Size(147, 20);
             this.lblExSourceName.TabIndex = 16;
@@ -264,7 +270,7 @@
             // 
             this.rbtnSQLStoredProcedures.AutoSize = true;
             this.rbtnSQLStoredProcedures.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSQLStoredProcedures.Location = new System.Drawing.Point(473, 118);
+            this.rbtnSQLStoredProcedures.Location = new System.Drawing.Point(506, 162);
             this.rbtnSQLStoredProcedures.Name = "rbtnSQLStoredProcedures";
             this.rbtnSQLStoredProcedures.Size = new System.Drawing.Size(196, 24);
             this.rbtnSQLStoredProcedures.TabIndex = 19;
@@ -276,7 +282,7 @@
             // 
             this.rbtnAPIsController.AutoSize = true;
             this.rbtnAPIsController.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnAPIsController.Location = new System.Drawing.Point(686, 118);
+            this.rbtnAPIsController.Location = new System.Drawing.Point(713, 162);
             this.rbtnAPIsController.Name = "rbtnAPIsController";
             this.rbtnAPIsController.Size = new System.Drawing.Size(133, 24);
             this.rbtnAPIsController.TabIndex = 18;
@@ -284,11 +290,24 @@
             this.rbtnAPIsController.UseVisualStyleBackColor = true;
             this.rbtnAPIsController.Visible = false;
             // 
+            // rbtnDTO
+            // 
+            this.rbtnDTO.AutoSize = true;
+            this.rbtnDTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnDTO.Location = new System.Drawing.Point(427, 162);
+            this.rbtnDTO.Name = "rbtnDTO";
+            this.rbtnDTO.Size = new System.Drawing.Size(60, 24);
+            this.rbtnDTO.TabIndex = 20;
+            this.rbtnDTO.Text = "DTO";
+            this.rbtnDTO.UseVisualStyleBackColor = true;
+            this.rbtnDTO.Visible = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1193, 1085);
+            this.ClientSize = new System.Drawing.Size(1193, 1090);
+            this.Controls.Add(this.rbtnDTO);
             this.Controls.Add(this.rbtnSQLStoredProcedures);
             this.Controls.Add(this.rbtnAPIsController);
             this.Controls.Add(this.chbAPIs);
@@ -345,6 +364,7 @@
         private System.Windows.Forms.CheckBox chbAPIs;
         private System.Windows.Forms.RadioButton rbtnSQLStoredProcedures;
         private System.Windows.Forms.RadioButton rbtnAPIsController;
+        private System.Windows.Forms.RadioButton rbtnDTO;
     }
 }
 

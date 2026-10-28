@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeGenerationForBusinessLayer.CodeGenerationAPIs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace CodeGeneration
         private clsCodeGenSQLStoredProcedures CodeGenSQLSP;
         private clsCodeGenAPIBusinessLayer CodeGenAPIBL;
         private clsCodeGenAPIsController CodeGenAPIsCtrlr;
+        private clsCodeGenAPIDTO CodeGenAPIDTO;
         private bool _GenerateEventLogCode;
 
         public bool GenerateEventLogCode // Add WriteOnEventLog Method in code
@@ -43,6 +45,8 @@ namespace CodeGeneration
             CodeGenAPIBL = new clsCodeGenAPIBusinessLayer (ClassName, Properties, NameTable);
 
             CodeGenAPIsCtrlr = new clsCodeGenAPIsController(ClassName, Properties, NameTable);
+
+            CodeGenAPIDTO = new clsCodeGenAPIDTO(ClassName, Properties, NameTable);
         }
 
         /// <summary>
@@ -91,6 +95,11 @@ namespace CodeGeneration
         public string GenerateAPIsCtrlrCode()
         {
             return CodeGenAPIsCtrlr.GenerateCode();
+        }
+
+        public string GenerateAPIDTOCode()
+        {
+            return CodeGenAPIDTO.GenerateCode();
         }
 
     }

@@ -62,15 +62,18 @@ namespace Simple_Code_Generator
                     txtCodeGenerated.Text = codeGen.GenerateSQLSPCode();
                 else if (rbtnBusinessLayer.Checked)
                     txtCodeGenerated.Text = codeGen.GenerateAPIBLCode();
+                else if (rbtnDTO.Checked)
+                    txtCodeGenerated.Text = codeGen.GenerateAPIDTOCode();
                 else
-                    txtCodeGenerated.Text = codeGen.GenerateAPIsCtrlrCode();
+                    txtCodeGenerated.Text = codeGen.GenerateAPIsCtrlrCode();//APIs Controller
 
             }
            
             
+            var result = MessageBox.Show("Created!\nDo you want to copy the code?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-
-            MessageBox.Show("Generated!","Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (result == DialogResult.Yes) 
+              Clipboard.SetText(txtCodeGenerated.Text);
         }
 
         private void butCopy_Click(object sender, EventArgs e)
@@ -88,6 +91,8 @@ namespace Simple_Code_Generator
             txtProperties.Text = Input.Properties;
             txtTableName.Text = Input.TableName;
             txtSourceName.Text = Input.SourceName;
+
+            chbAPIs.Checked = true;
         }
 
 
@@ -227,6 +232,7 @@ namespace Simple_Code_Generator
         {
             rbtnAPIsController.Visible = chbAPIs.Checked;
             rbtnSQLStoredProcedures.Visible = rbtnAPIsController.Visible;
+            rbtnDTO.Visible = rbtnSQLStoredProcedures.Visible;
 
             rbtnBusinessLayer.Text = chbAPIs.Checked ? "API Business Layer": "Business Layer";
             rbtnDataLayer.Text = chbAPIs.Checked ? "API Data Layer" : "Data Layer";
