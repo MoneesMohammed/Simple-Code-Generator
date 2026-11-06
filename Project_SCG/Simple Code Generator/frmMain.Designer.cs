@@ -52,7 +52,12 @@
             this.rbtnSQLStoredProcedures = new System.Windows.Forms.RadioButton();
             this.rbtnAPIsController = new System.Windows.Forms.RadioButton();
             this.rbtnDTO = new System.Windows.Forms.RadioButton();
+            this.gbAPIDataLayer = new System.Windows.Forms.GroupBox();
+            this.chbGen_clsLogger = new System.Windows.Forms.CheckBox();
+            this.chbGen_DataSettings = new System.Windows.Forms.CheckBox();
+            this.chbWriteLogErrorCode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbAPIDataLayer.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtClassName
@@ -90,11 +95,11 @@
             // 
             this.txtCodeGenerated.AcceptsTab = true;
             this.txtCodeGenerated.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 218);
+            this.txtCodeGenerated.Location = new System.Drawing.Point(12, 267);
             this.txtCodeGenerated.Multiline = true;
             this.txtCodeGenerated.Name = "txtCodeGenerated";
             this.txtCodeGenerated.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 815);
+            this.txtCodeGenerated.Size = new System.Drawing.Size(1169, 766);
             this.txtCodeGenerated.TabIndex = 4;
             this.txtCodeGenerated.WordWrap = false;
             // 
@@ -174,7 +179,7 @@
             this.rbtnBusinessLayer.AutoSize = true;
             this.rbtnBusinessLayer.Checked = true;
             this.rbtnBusinessLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnBusinessLayer.Location = new System.Drawing.Point(857, 162);
+            this.rbtnBusinessLayer.Location = new System.Drawing.Point(850, 227);
             this.rbtnBusinessLayer.Name = "rbtnBusinessLayer";
             this.rbtnBusinessLayer.Size = new System.Drawing.Size(135, 24);
             this.rbtnBusinessLayer.TabIndex = 10;
@@ -186,7 +191,7 @@
             // 
             this.rbtnDataLayer.AutoSize = true;
             this.rbtnDataLayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnDataLayer.Location = new System.Drawing.Point(1029, 162);
+            this.rbtnDataLayer.Location = new System.Drawing.Point(1022, 227);
             this.rbtnDataLayer.Name = "rbtnDataLayer";
             this.rbtnDataLayer.Size = new System.Drawing.Size(105, 24);
             this.rbtnDataLayer.TabIndex = 11;
@@ -212,7 +217,7 @@
             // 
             this.chbAddWriteOnEventLog.AutoSize = true;
             this.chbAddWriteOnEventLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbAddWriteOnEventLog.Location = new System.Drawing.Point(976, 129);
+            this.chbAddWriteOnEventLog.Location = new System.Drawing.Point(427, 122);
             this.chbAddWriteOnEventLog.Name = "chbAddWriteOnEventLog";
             this.chbAddWriteOnEventLog.Size = new System.Drawing.Size(173, 22);
             this.chbAddWriteOnEventLog.TabIndex = 13;
@@ -270,7 +275,7 @@
             // 
             this.rbtnSQLStoredProcedures.AutoSize = true;
             this.rbtnSQLStoredProcedures.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnSQLStoredProcedures.Location = new System.Drawing.Point(506, 162);
+            this.rbtnSQLStoredProcedures.Location = new System.Drawing.Point(499, 227);
             this.rbtnSQLStoredProcedures.Name = "rbtnSQLStoredProcedures";
             this.rbtnSQLStoredProcedures.Size = new System.Drawing.Size(196, 24);
             this.rbtnSQLStoredProcedures.TabIndex = 19;
@@ -282,7 +287,7 @@
             // 
             this.rbtnAPIsController.AutoSize = true;
             this.rbtnAPIsController.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnAPIsController.Location = new System.Drawing.Point(713, 162);
+            this.rbtnAPIsController.Location = new System.Drawing.Point(706, 227);
             this.rbtnAPIsController.Name = "rbtnAPIsController";
             this.rbtnAPIsController.Size = new System.Drawing.Size(133, 24);
             this.rbtnAPIsController.TabIndex = 18;
@@ -294,7 +299,7 @@
             // 
             this.rbtnDTO.AutoSize = true;
             this.rbtnDTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnDTO.Location = new System.Drawing.Point(427, 162);
+            this.rbtnDTO.Location = new System.Drawing.Point(420, 227);
             this.rbtnDTO.Name = "rbtnDTO";
             this.rbtnDTO.Size = new System.Drawing.Size(60, 24);
             this.rbtnDTO.TabIndex = 20;
@@ -302,11 +307,58 @@
             this.rbtnDTO.UseVisualStyleBackColor = true;
             this.rbtnDTO.Visible = false;
             // 
+            // gbAPIDataLayer
+            // 
+            this.gbAPIDataLayer.Controls.Add(this.chbWriteLogErrorCode);
+            this.gbAPIDataLayer.Controls.Add(this.chbGen_DataSettings);
+            this.gbAPIDataLayer.Controls.Add(this.chbGen_clsLogger);
+            this.gbAPIDataLayer.Location = new System.Drawing.Point(926, 100);
+            this.gbAPIDataLayer.Name = "gbAPIDataLayer";
+            this.gbAPIDataLayer.Size = new System.Drawing.Size(242, 115);
+            this.gbAPIDataLayer.TabIndex = 21;
+            this.gbAPIDataLayer.TabStop = false;
+            this.gbAPIDataLayer.Text = "API Data Layer";
+            this.gbAPIDataLayer.Visible = false;
+            // 
+            // chbGen_clsLogger
+            // 
+            this.chbGen_clsLogger.AutoSize = true;
+            this.chbGen_clsLogger.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbGen_clsLogger.Location = new System.Drawing.Point(14, 52);
+            this.chbGen_clsLogger.Name = "chbGen_clsLogger";
+            this.chbGen_clsLogger.Size = new System.Drawing.Size(157, 22);
+            this.chbGen_clsLogger.TabIndex = 22;
+            this.chbGen_clsLogger.Text = "Generate clsLogger";
+            this.chbGen_clsLogger.UseVisualStyleBackColor = true;
+            // 
+            // chbGen_DataSettings
+            // 
+            this.chbGen_DataSettings.AutoSize = true;
+            this.chbGen_DataSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbGen_DataSettings.Location = new System.Drawing.Point(14, 23);
+            this.chbGen_DataSettings.Name = "chbGen_DataSettings";
+            this.chbGen_DataSettings.Size = new System.Drawing.Size(222, 22);
+            this.chbGen_DataSettings.TabIndex = 23;
+            this.chbGen_DataSettings.Text = "Generate Data Settings Class";
+            this.chbGen_DataSettings.UseVisualStyleBackColor = true;
+            // 
+            // chbWriteLogErrorCode
+            // 
+            this.chbWriteLogErrorCode.AutoSize = true;
+            this.chbWriteLogErrorCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbWriteLogErrorCode.Location = new System.Drawing.Point(14, 81);
+            this.chbWriteLogErrorCode.Name = "chbWriteLogErrorCode";
+            this.chbWriteLogErrorCode.Size = new System.Drawing.Size(194, 22);
+            this.chbWriteLogErrorCode.TabIndex = 24;
+            this.chbWriteLogErrorCode.Text = "Add Write LogError Code";
+            this.chbWriteLogErrorCode.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1193, 1090);
+            this.Controls.Add(this.gbAPIDataLayer);
             this.Controls.Add(this.rbtnDTO);
             this.Controls.Add(this.rbtnSQLStoredProcedures);
             this.Controls.Add(this.rbtnAPIsController);
@@ -336,6 +388,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbAPIDataLayer.ResumeLayout(false);
+            this.gbAPIDataLayer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +419,10 @@
         private System.Windows.Forms.RadioButton rbtnSQLStoredProcedures;
         private System.Windows.Forms.RadioButton rbtnAPIsController;
         private System.Windows.Forms.RadioButton rbtnDTO;
+        private System.Windows.Forms.GroupBox gbAPIDataLayer;
+        private System.Windows.Forms.CheckBox chbGen_clsLogger;
+        private System.Windows.Forms.CheckBox chbGen_DataSettings;
+        private System.Windows.Forms.CheckBox chbWriteLogErrorCode;
     }
 }
 

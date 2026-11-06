@@ -12,6 +12,8 @@ namespace CodeGeneration
         public string Properties { get; set; } //(example: ID:int,Name:string,Email:string)
         public string TableName { get; set; }
 
+        public bool GenerateLogErrorCode { get; set; } // Add WriteLogError in code
+
         private StringBuilder sb { get; }
 
         private string _PropID;
@@ -41,11 +43,56 @@ namespace CodeGeneration
 
             sb.AppendLine($"public class clsDataSettings");
             sb.AppendLine("{");
-            sb.AppendLine("  static public string ConnectionString = \"Server=.;Database=StudentsDB;Trusted_Connection=True;TrustServerCertificate=True;\";");
+            sb.AppendLine("  static public string ConnectionString = \"Server=.;Database=[DatabaseName];Trusted_Connection=True;TrustServerCertificate=True;\";");
             sb.AppendLine("}");
 
             return sb;
         }
+
+        private StringBuilder CreateclsLoggerClass()//clsLogger
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("//Inside [Program.cs]");
+            sb.AppendLine("//Proper configuration after building the application");
+            sb.AppendLine("//After [var app = builder.Build();]");
+            sb.AppendLine("");
+            sb.AppendLine("// Initialize Logger");
+            sb.AppendLine("clsLogger.Initialize(app.Services.GetRequiredService<ILoggerFactory>());");
+            sb.AppendLine("");
+
+
+
+            sb.AppendLine($"public class clsLogger");
+            sb.AppendLine("{");
+            sb.AppendLine("    private static ILogger? _logger;");
+            sb.AppendLine("");
+            sb.AppendLine("    public static void Initialize(ILoggerFactory loggerFactory)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        _logger = loggerFactory.CreateLogger(\"[APIName].DataAccess\");");
+            sb.AppendLine("    }");
+            sb.AppendLine("");
+            sb.AppendLine("    public static void LogError(Exception ex, string message)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        _logger?.LogError(ex, message);");
+            sb.AppendLine("    }");
+            sb.AppendLine("");
+            sb.AppendLine("    public static void LogWarning(string message)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        _logger?.LogWarning(message);");
+            sb.AppendLine("    }");
+            sb.AppendLine("");
+            sb.AppendLine("    public static void LogInformation(string message)");
+            sb.AppendLine("    {");
+            sb.AppendLine("        _logger?.LogInformation(message);");
+            sb.AppendLine("    }");
+           
+            sb.AppendLine("");
+            sb.AppendLine("}");
+
+            return sb;
+        }
+
 
         //WriteOnEventLog
 
@@ -153,10 +200,21 @@ namespace CodeGeneration
             sb.AppendLine("      reader.Close();");
             sb.AppendLine("    }");
 
-            sb.AppendLine("    catch//(Exception ex)");
-            sb.AppendLine("    {");
-            sb.AppendLine("         return null;");
-            sb.AppendLine("    }");
+            if (GenerateLogErrorCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("        clsLogger.LogError(ex, \"An error occurred\");");
+                sb.AppendLine("        throw;");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("         return null;");
+                sb.AppendLine("    }");
+            }
 
 
             sb.AppendLine("    finally");
@@ -221,8 +279,21 @@ namespace CodeGeneration
             sb.AppendLine("        }");
             sb.AppendLine("");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception ex)");
-            sb.AppendLine("    { ID = -1; }");
+
+            if (GenerateLogErrorCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("        clsLogger.LogError(ex, \"An error occurred\");");
+                sb.AppendLine("        throw;");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { ID = -1; }");
+            }
+
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -268,8 +339,21 @@ namespace CodeGeneration
             sb.AppendLine("              RowAffected = affectedRows;");
             sb.AppendLine("        }");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception ex)");
-            sb.AppendLine("    { return false; }");
+
+            if (GenerateLogErrorCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("        clsLogger.LogError(ex, \"An error occurred\");");
+                sb.AppendLine("        throw;");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { return false; }");
+            }
+            
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -306,8 +390,21 @@ namespace CodeGeneration
             sb.AppendLine("              RowAffected = affectedRows;");
             sb.AppendLine("        }");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception ex)");
-            sb.AppendLine("    { return false; }");
+
+            if (GenerateLogErrorCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("        clsLogger.LogError(ex, \"An error occurred\");");
+                sb.AppendLine("        throw;");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    { return false; }");
+            }
+            
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -375,8 +472,21 @@ namespace CodeGeneration
             sb.AppendLine("");
             sb.AppendLine("        reader.Close();");
             sb.AppendLine("    }");
-            sb.AppendLine("    catch//(Exception ex)");
-            sb.AppendLine("    {  }");
+
+            if (GenerateLogErrorCode)
+            {
+                sb.AppendLine("    catch(Exception ex)");
+                sb.AppendLine("    {");
+                sb.AppendLine("        clsLogger.LogError(ex, \"An error occurred\");");
+                sb.AppendLine("        throw;");
+                sb.AppendLine("    }");
+            }
+            else
+            {
+                sb.AppendLine("    catch//(Exception ex)");
+                sb.AppendLine("    {  }");
+            }
+            
             sb.AppendLine("    finally");
             sb.AppendLine("    { connection.Close(); }");
             sb.AppendLine("");
@@ -404,7 +514,10 @@ namespace CodeGeneration
             return CreateDataSettingsClass().ToString();
         }
 
-
+        public string GenerateclsLoggerCode()
+        {
+            return CreateclsLoggerClass().ToString();
+        }
 
     }
 

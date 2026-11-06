@@ -17,6 +17,7 @@ namespace CodeGeneration
         private clsCodeGenAPIsController CodeGenAPIsCtrlr;
         private clsCodeGenAPIDTO CodeGenAPIDTO;
         private bool _GenerateEventLogCode;
+        private bool _GenerateLogErrorCode;
 
         public bool GenerateEventLogCode // Add WriteOnEventLog Method in code
         {
@@ -28,6 +29,24 @@ namespace CodeGeneration
                 CodeGenDL.GenerateEventLogCode = value;
             }
         }
+
+
+        public bool GenerateLogErrorCode // Add WriteLogError Method in code
+        {
+            get { return _GenerateLogErrorCode; }
+
+            set
+            {
+                _GenerateLogErrorCode = value;
+                CodeGenAPIDL.GenerateLogErrorCode = value;
+            }
+        }
+
+
+
+
+
+
 
         /// <param name="ClassName">The ClassName to be Generated.</param>
         /// <param name="Properties">The Properties of ClassName . example: ID:int,Name:string,Email:string.</param>
@@ -73,7 +92,7 @@ namespace CodeGeneration
         /// <returns>The Generate DataSettings Class of the Code.</returns>
         public string GenerateDSClassCode() 
         {
-            return CodeGenDL.GenerateDataSettingsClass();
+            return CodeGenAPIDL.GenerateDataSettingsClass();
         }
 
 
@@ -100,6 +119,11 @@ namespace CodeGeneration
         public string GenerateAPIDTOCode()
         {
             return CodeGenAPIDTO.GenerateCode();
+        }
+
+        public string GenerateclsLoggerCode()
+        {
+            return CodeGenAPIDL.GenerateclsLoggerCode();
         }
 
     }

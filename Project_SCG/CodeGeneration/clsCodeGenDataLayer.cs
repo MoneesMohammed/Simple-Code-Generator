@@ -61,7 +61,7 @@ namespace CodeGeneration
 
             sb.AppendLine($"public class clsDataSettings");
             sb.AppendLine("{");
-            sb.AppendLine("  static public string ConnectionString = \"Server=.;Database=NameDatabase;Trusted_Connection=True;\"");
+            sb.AppendLine("  static public string ConnectionString = \"Server=.;Database=[DatabaseName];Trusted_Connection=True;\"");
             sb.AppendLine("}");
 
             return sb;

@@ -46,6 +46,11 @@ namespace Simple_Code_Generator
 
             codeGen.GenerateEventLogCode = chbAddWriteOnEventLog.Checked;
 
+            codeGen.GenerateLogErrorCode = chbWriteLogErrorCode.Checked;
+
+            if (!CheckGBox())
+                return;
+
             if (!chbAPIs.Checked)
             {
                 if (rbtnBusinessLayer.Checked)
@@ -56,8 +61,23 @@ namespace Simple_Code_Generator
             }
             else
             {
+                //chbGen_clsLogger.Checked && chbGen_DataSettings.Checked
                 if (rbtnDataLayer.Checked)
-                    txtCodeGenerated.Text = codeGen.GenerateAPIDLCode();
+                {
+                    if (chbGen_clsLogger.Checked)
+                    {
+                       txtCodeGenerated.Text = codeGen.GenerateclsLoggerCode();
+                    }
+
+                    if (chbGen_DataSettings.Checked)
+                        txtCodeGenerated.Text = codeGen.GenerateDSClassCode();
+                        
+                    if (!chbGen_clsLogger.Checked && !chbGen_DataSettings.Checked)
+                        txtCodeGenerated.Text = codeGen.GenerateAPIDLCode();
+
+                }
+                    
+
                 else if (rbtnSQLStoredProcedures.Checked)
                     txtCodeGenerated.Text = codeGen.GenerateSQLSPCode();
                 else if (rbtnBusinessLayer.Checked)
@@ -74,6 +94,22 @@ namespace Simple_Code_Generator
 
             if (result == DialogResult.Yes) 
               Clipboard.SetText(txtCodeGenerated.Text);
+        }
+
+        private bool CheckGBox()
+        {
+            bool AllChecked = (chbWriteLogErrorCode.Checked && chbGen_clsLogger.Checked && chbGen_DataSettings.Checked);
+            bool TowChecked = (chbWriteLogErrorCode.Checked && chbGen_clsLogger.Checked) || 
+                              (chbGen_DataSettings.Checked && chbGen_clsLogger.Checked)  ||
+                              (chbGen_DataSettings.Checked && chbWriteLogErrorCode.Checked);
+
+            if (AllChecked || TowChecked)
+            {
+                MessageBox.Show("You must select one, or select nothing, from (API Data Layer)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
         private void butCopy_Click(object sender, EventArgs e)
@@ -192,12 +228,16 @@ namespace Simple_Code_Generator
         {
             if (chbAPIs.Checked)
             {
+                gbAPIDataLayer.Visible = rbtnDataLayer.Checked;
+
                 return;
             }
 
+            gbAPIDataLayer.Visible = false;
+
             chbAddWriteOnEventLog.Visible = rbtnDataLayer.Checked;
 
-             chbAddWriteOnEventLog.Checked = false;
+            chbAddWriteOnEventLog.Checked = false;
             
         }
 
@@ -239,6 +279,17 @@ namespace Simple_Code_Generator
 
             chbAddWriteOnEventLog.Visible = !chbAPIs.Checked && !rbtnBusinessLayer.Checked;
             chbAddWriteOnEventLog.Checked = false;
+
+
+            if (!chbAPIs.Checked)
+            {
+                gbAPIDataLayer.Visible = false;
+            }
+            else
+            {
+                gbAPIDataLayer.Visible = rbtnDataLayer.Checked;
+            }
+
         }
 
 
